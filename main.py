@@ -4,7 +4,6 @@ import tweepy
 def get_api(consumer_key, consumer_secret, access_token, access_token_secret):
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
-
     api = tweepy.API(auth)
 
     try:
@@ -21,10 +20,8 @@ def generate_reply(sentence):
 
 
 def retweet_gengar(api):
-    for tweet in api.search(q="Gengar", lang="en", rpp=10):
-        api.create_favorite(tweet)
+    for tweet in api.search(q="Gengar", lang="en", rpp=2):
         tweet_to_quote_url = "https://twitter.com/twitter/statuses/" + str(tweet.id)
-        print(tweet_to_quote_url)
         api.update_status(generate_reply("text"), attachment_url=tweet_to_quote_url)
 
 
