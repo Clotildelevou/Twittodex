@@ -64,15 +64,11 @@ def build_stats(national_number):
 
     # x-coordinates of left sides of bars
     left = [1, 2, 3, 4, 5, 6]
-
-    # heights of bars
     height = [poke_data.attack, poke_data.defense, poke_data.hp, poke_data.sp_attack, poke_data.sp_defense,
               poke_data.speed]
-
-    # labels for bars
     tick_label = ['Attack', 'Defense', 'HP', 'SpAttack', 'SpDefense', 'Speed']
 
-    #clears plot
+    # clears plot
     plt.clf()
 
     # sets limits for same size graphs
@@ -87,7 +83,9 @@ def build_stats(national_number):
 
     # naming the y-axis
     plt.ylabel('Value')
+
     # plot title
     plt.title(poke_data.english_name + ' stats')
 
+    # save as png image
     plt.savefig("data/stats/" + str(poke_data.pokedex_number) + "_stats")
