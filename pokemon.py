@@ -11,6 +11,10 @@ def get_pokemon_pic(national_number):
     return "data/pokemon/" + str(national_number + 1) + ".png"
 
 
+def get_pokemon_stats(national_number):
+    return "data/stats/" + str(national_number + 1) + "_stats.png"
+
+
 def build_desc(national_number):
     poke_data = get_pokemon_info(national_number)
     text = ""
@@ -18,7 +22,7 @@ def build_desc(national_number):
     if poke_data.is_legendary == 1:
         text += "𝙇𝙚𝙜𝙚𝙣𝙙𝙖𝙧𝙮 𝙋𝙤𝙠𝙚𝙢𝙤𝙣\n"
 
-    text += "Name: " + poke_data.english_name + ", " + poke_data.japanese_name + " N°" + str(national_number) + "\n"
+    text += "Name: " + poke_data.english_name + ", " + poke_data.japanese_name + " N°" + str(national_number + 1) + "\n"
 
     text += "Classification: " + poke_data.classification + "\n"
 

@@ -1,9 +1,22 @@
 import tweepy
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+import pokemon
 
 
-def get_api(consumer_key, consumer_secret, access_token, access_token_secret):
-    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token, access_token_secret)
+def get_api():
+
+    dotenv_path = join(dirname(__file__), '.env')
+    load_dotenv(dotenv_path)
+    CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
+    CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
+    ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
+    ACCESS_SECRET = os.environ.get("ACCESS_SECRET")
+
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
     api = tweepy.API(auth)
 
     try:
@@ -25,13 +38,14 @@ def delete_all_tweets(api):
         api.destroy_status(tweet.id)
 
 
-def generate_reply(sentence):
-    reply = "I just love Gengar"
-    return reply
+# generate the daily tweet
+def gen_daily_tweet(national_number):
+    api = get_api()
+    description = pokemon.build_desc(national_number)
+    img_path = pokemon.get_pokemon_pic(national_number)
+    stats_path = pokemon.get_pokemon_stats(national_number)
 
+    status = api.update_with_media(img_path, description)
+    api.update_with_media(stats_path, "Stats of today's Pokemon", in_reply_to_status_id=status.id,
+                          auto_populate_reply_metadata=True)
 
-# retweets
-def retweet_gengar(api):
-    for tweet in api.search(q="Gengar", lang="en", rpp=2):
-        tweet_to_quote_url = "https://twitter.com/twitter/statuses/" + str(tweet.id)
-        api.update_status(generate_reply("text"), attachment_url=tweet_to_quote_url)
