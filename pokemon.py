@@ -72,16 +72,22 @@ def build_stats(national_number):
     # labels for bars
     tick_label = ['Attack', 'Defense', 'HP', 'SpAttack', 'SpDefense', 'Speed']
 
+    #clears plot
+    plt.clf()
+
+    # sets limits for same size graphs
+    plt.ylim(0, 255)
+    plt.autoscale(False)
+
     # plotting a bar chart
     plt.bar(left, height, tick_label=tick_label,
             width=0.8, color=[get_stat_color(poke_data.attack), get_stat_color(poke_data.defense),
-                              get_stat_color(poke_data.hp), get_stat_color(poke_data.sp_attack), get_stat_color(poke_data.sp_defense),
-                              get_stat_color(poke_data.speed)])
+                              get_stat_color(poke_data.hp), get_stat_color(poke_data.sp_attack),
+                              get_stat_color(poke_data.sp_defense), get_stat_color(poke_data.speed)])
 
     # naming the y-axis
     plt.ylabel('Value')
     # plot title
     plt.title(poke_data.english_name + ' stats')
 
-    # function to show the plot
-    plt.show()
+    plt.savefig("data/stats/" + str(poke_data.pokedex_number) + "_stats")

@@ -17,6 +17,6 @@ if __name__ == '__main__':
 
     # connects the api
     api = authentification.get_api(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_SECRET)
-    print(pokemon.get_pokemon_info(2))
-    print(pokemon.build_desc(2))
-    pokemon.build_stats(79)
+    for i in range(0, 721):
+        pokemon.build_stats(i)
+
