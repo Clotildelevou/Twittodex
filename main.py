@@ -14,6 +14,16 @@ def get_api(consumer_key, consumer_secret, access_token, access_token_secret):
         print("Error during authentication")
 
 
+def delete_all_tweets(api):
+    tweets = api.user_timeline(screen_name="the_gengar_bot",
+                               # 200 is the maximum allowed count
+                               count=200,
+                               include_rts=True,
+                               )
+    for tweet in tweets:
+        api.destroy_status(tweet.id)
+
+
 def generate_reply(sentence):
     reply = "I just love Gengar"
     return reply
@@ -27,10 +37,10 @@ def retweet_gengar(api):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    consumer_key = "A9gcRMmWBVYTX3UdlahRNjPv8"
-    consumer_secret = "HFr1gOlg3NQorYW44njr1EpmVBE3yVPwMImjKZ2pfAZyDUqQiu"
-    access_token = "1441322507491942400-82hSZGU7XOjMRxq9HMJizxyBeqwp03"
-    access_secret = "2nB3CKPY1Uwm5byr3GxzdyvyqeEXytn5eQtBn5il9u4pF"
+    consumer_key = "RBuhlvOgdwEyLpQP6VBbQbj1q"
+    consumer_secret = "bsNTSEwe189izP5IAz781WIFIs9DuDSyxdOeRjrohSulFnAYeB"
+    access_token = "1441322507491942400-NOQVsJ36GCKMba6mNCriRWfWUrM3P7"
+    access_secret = "6RREaEwToJe89xVpoUdo45PKhhTYdGVmvtGm5SV8mSMux"
 
     api = get_api(consumer_key, consumer_secret, access_token, access_secret)
-    retweet_gengar(api)
+    delete_all_tweets(api)
