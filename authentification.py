@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import pokemon
 import logger
 
+
 from os import environ
 CONSUMER_KEY = environ['CONSUMER_KEY']
 CONSUMER_SECRET = environ['CONSUMER_SECRET']

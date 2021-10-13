@@ -92,10 +92,10 @@ def build_stats(national_number):
     poke_data = get_pokemon_info(national_number)
 
     # x-coordinates of left sides of bars
-    left = [1, 2, 3, 4, 5, 6]
+    left = [0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6]
     height = [poke_data.attack, poke_data.defense, poke_data.hp, poke_data.sp_attack, poke_data.sp_defense,
-              poke_data.speed]
-    tick_label = ['Attack', 'Defense', 'HP', 'SpAttack', 'SpDefense', 'Speed']
+              poke_data.speed, 0]
+    tick_label = ['Attack', 'Defense', 'HP', 'SpAttack', 'SpDefense', 'Speed', '']
 
     # clears plot
     plt.clf()
@@ -106,9 +106,10 @@ def build_stats(national_number):
 
     # plotting a bar chart
     plt.bar(left, height, tick_label=tick_label,
-            width=0.8, color=[get_stat_color(poke_data.attack), get_stat_color(poke_data.defense),
+            width=0.5, color=[get_stat_color(poke_data.attack), get_stat_color(poke_data.defense),
                               get_stat_color(poke_data.hp), get_stat_color(poke_data.sp_attack),
-                              get_stat_color(poke_data.sp_defense), get_stat_color(poke_data.speed)])
+                              get_stat_color(poke_data.sp_defense), get_stat_color(poke_data.speed)],
+            align='center')
 
     # naming the y-axis
     plt.ylabel('Value')
