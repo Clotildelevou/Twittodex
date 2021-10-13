@@ -7,11 +7,11 @@ def gen_logfile():
     id = 1
     now = datetime.now()
     date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
-    path = "data/logs/" + str(id) + "_log.txt"
+    path = "data/logs/logger_" + str(id) + ".log"
 
     while os.path.exists(path):
         id += 1
-        path = "data/logs/logger" + str(id) + ".log"
+        path = "data/logs/logger_" + str(id) + ".log"
 
     file = open(path, "x")
     file.write("[CREATION] " + date_time + "\n")
