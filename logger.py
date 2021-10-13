@@ -11,7 +11,7 @@ def gen_logfile():
 
     while os.path.exists(path):
         id += 1
-        path = "data/logs/" + str(id) + "_log.txt"
+        path = "data/logs/logger" + str(id) + ".log"
 
     file = open(path, "x")
     file.write("[CREATION] " + date_time + "\n")
