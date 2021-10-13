@@ -156,4 +156,6 @@ def build_weaknesses(national_number):
     table = ax.table(cellText=cell_info, loc='center', cellColours=cell_color, cellLoc='center')
     table.scale(1, 1.5)
     ax.axis('off')
-    plt.show()
+
+    # save as png image
+    plt.savefig("data/weakness/" + str(poke_data.pokedex_number) + "_weak")
