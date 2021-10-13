@@ -1,5 +1,6 @@
 import pandas
 from matplotlib import pyplot as plt
+from numpy import NaN
 
 
 def get_pokemon_info(national_number):
@@ -15,7 +16,11 @@ def get_pokemon_stats(national_number):
     return "data/stats/" + str(national_number + 1) + "_stats.png"
 
 
-def build_desc(national_number):
+def get_pokemon_weakness(national_number):
+    return "data/weakness/" + str(national_number + 1) + "_weak.png"
+
+
+def build_description(national_number):
     poke_data = get_pokemon_info(national_number)
     text = ""
 
@@ -27,7 +32,7 @@ def build_desc(national_number):
     text += "Classification: " + poke_data.classification + "\n"
 
     text += "Type : " + poke_data.type1
-    if poke_data.type2 != "NaN":
+    if isinstance(poke_data.type2, str):
         text += ", " + poke_data.type2
     text += "\n"
 
