@@ -2,6 +2,8 @@ from random import randint
 import logger
 import time
 
+import authentification
+
 
 
 # Press the green button in the gutter to run the script.
@@ -9,10 +11,7 @@ import pokemon
 
 if __name__ == '__main__':
 
-    for i in range(0,720):
-        pokemon.build_stats(i)
-
-    """posted_list = []
+    posted_list = []
     logfile = logger.gen_logfile()
     while True:
         if len(posted_list) != 781:
@@ -28,5 +27,5 @@ if __name__ == '__main__':
             api = authentification.get_api()
             api.update_status("I made my job. now I have to leave,thank you everyone for checking on me !")
             break
-        time.sleep(43200)"""
+        time.sleep(43200)
 
