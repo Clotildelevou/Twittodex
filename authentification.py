@@ -7,17 +7,19 @@ from dotenv import load_dotenv
 import pokemon
 import logger
 
+from os import environ
+CONSUMER_KEY = environ['CONSUMER_KEY']
+CONSUMER_SECRET = environ['CONSUMER_SECRET']
+ACCESS_KEY = environ['ACCESS_KEY']
+ACCESS_SECRET = environ['ACCESS_SECRET']
+
 
 def get_api():
     dotenv_path = join(dirname(__file__), '.env')
     load_dotenv(dotenv_path)
-    CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
-    CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
-    ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
-    ACCESS_SECRET = os.environ.get("ACCESS_SECRET")
 
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-    auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
+    auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
     api = tweepy.API(auth)
 
     try:
