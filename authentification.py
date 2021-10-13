@@ -1,13 +1,14 @@
 import tweepy
 import os
+import traceback
 from os.path import join, dirname
 from dotenv import load_dotenv
 
 import pokemon
+import logger
 
 
 def get_api():
-
     dotenv_path = join(dirname(__file__), '.env')
     load_dotenv(dotenv_path)
     CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
@@ -27,15 +28,10 @@ def get_api():
         print("Error during authentication")
 
 
-# cleans 200 tweets of the bot
-def delete_all_tweets(api):
-    tweets = api.user_timeline(screen_name="the_gengar_bot",
-                               # 200 is the maximum allowed count
-                               count=200,
-                               include_rts=True,
-                               )
-    for tweet in tweets:
-        api.destroy_status(tweet.id)
+def set_profile_picture(national_number):
+    api = get_api()
+    pp_path = pokemon.get_pokemon_pic(national_number)
+    api.update_profile_image(pp_path)
 
 
 # generate the daily tweet
