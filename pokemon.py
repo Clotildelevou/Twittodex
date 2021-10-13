@@ -72,11 +72,11 @@ def get_weakness_color(value):
     elif case(0.50):
         col = 'greenyellow'
     elif case(1):
-        col = 'white'
+        col = 'whitesmoke'
     elif case(2):
-        col = 'orange'
+        col = 'indianred'
     elif case(4):
-        col = "indianred"
+        col = "firebrick"
     else:
         col = 'dimgray'
     return col
@@ -118,32 +118,37 @@ def build_weaknesses(national_number):
     poke_data = get_pokemon_info(national_number)
     plt.clf()
 
-    columns = ['against_bug', 'against_dark', 'against_dragon', 'against_electric', 'against_fairy', 'against_fight',
-               'against_fire', 'against_flying', 'against_ghost', 'against_grass', 'against_ground', 'against_ice',
-               'against_normal', 'against_poison', 'against_psychic', 'against_rock', 'against_steel', 'against_water']
+    cell_info = [['Bug', poke_data.against_bug], ['Dark', poke_data.against_dark], ['Dragon', poke_data.against_dragon],
+                 ['Electric', poke_data.against_electric], ['Fairy', poke_data.against_fairy],
+                 ['Fight', poke_data.against_fight], ['Fire', poke_data.against_fire],
+                 ['Flying', poke_data.against_flying], ['Ghost', poke_data.against_ghost],
+                 ['Grass', poke_data.against_grass], ['Ground', poke_data.against_ground],
+                 ['Ice', poke_data.against_ice], ['Normal', poke_data.against_normal],
+                 ['Poison', poke_data.against_poison], ['Psychic', poke_data.against_psychic],
+                 ['Rock', poke_data.against_rock], ['Steel', poke_data.against_steel],
+                 ['Water', poke_data.against_water]]
 
-    cell_info = [[poke_data.against_bug, poke_data.against_dark, poke_data.against_dragon, poke_data.against_electric,
-                 poke_data.against_fairy, poke_data.against_fight, poke_data.against_fire, poke_data.against_flying,
-                 poke_data.against_ghost, poke_data.against_grass, poke_data.against_ground, poke_data.against_ice,
-                 poke_data.against_normal, poke_data.against_poison, poke_data.against_psychic, poke_data.against_rock,
-                 poke_data.against_steel, poke_data.against_water]]
+    cell_color = [[get_weakness_color(poke_data.against_bug), get_weakness_color(poke_data.against_bug)],
+                  [get_weakness_color(poke_data.against_bug), get_weakness_color(poke_data.against_bug)],
+                  [get_weakness_color(poke_data.against_dragon), get_weakness_color(poke_data.against_dragon)],
+                  [get_weakness_color(poke_data.against_dragon), get_weakness_color(poke_data.against_dragon)],
+                  [get_weakness_color(poke_data.against_fairy), get_weakness_color(poke_data.against_fairy)],
+                  [get_weakness_color(poke_data.against_fight), get_weakness_color(poke_data.against_fight)],
+                  [get_weakness_color(poke_data.against_fire), get_weakness_color(poke_data.against_fire)],
+                  [get_weakness_color(poke_data.against_flying), get_weakness_color(poke_data.against_flying)],
+                  [get_weakness_color(poke_data.against_ghost), get_weakness_color(poke_data.against_ghost)],
+                  [get_weakness_color(poke_data.against_grass), get_weakness_color(poke_data.against_grass)],
+                  [get_weakness_color(poke_data.against_ground), get_weakness_color(poke_data.against_ground)],
+                  [get_weakness_color(poke_data.against_ice), get_weakness_color(poke_data.against_ice)],
+                  [get_weakness_color(poke_data.against_normal), get_weakness_color(poke_data.against_normal)],
+                  [get_weakness_color(poke_data.against_poison), get_weakness_color(poke_data.against_poison)],
+                  [get_weakness_color(poke_data.against_psychic), get_weakness_color(poke_data.against_psychic)],
+                  [get_weakness_color(poke_data.against_rock), get_weakness_color(poke_data.against_rock)],
+                  [get_weakness_color(poke_data.against_steel), get_weakness_color(poke_data.against_steel)],
+                  [get_weakness_color(poke_data.against_water), get_weakness_color(poke_data.against_water)]]
 
-    cell_color = [[get_weakness_color(poke_data.against_bug), get_weakness_color(poke_data.against_dark),
-                  get_weakness_color(poke_data.against_dragon), get_weakness_color(poke_data.against_electric),
-                  get_weakness_color(poke_data.against_fairy), get_weakness_color(poke_data.against_fight),
-                  get_weakness_color(poke_data.against_fire), get_weakness_color(poke_data.against_flying),
-                  get_weakness_color(poke_data.against_ghost), get_weakness_color(poke_data.against_grass),
-                  get_weakness_color(poke_data.against_ground), get_weakness_color(poke_data.against_ice),
-                  get_weakness_color(poke_data.against_normal), get_weakness_color(poke_data.against_poison),
-                  get_weakness_color(poke_data.against_psychic), get_weakness_color(poke_data.against_rock),
-                  get_weakness_color(poke_data.against_steel), get_weakness_color(poke_data.against_water)]]
-
-    cell_text = []
-    for i in range(0, len(cell_info[0])):
-        cell_text.append(str(cell_info[0][i]))
-
-    fig, ax = plt.subplots(1, 1)
-    ax.axis('tight')
+    fig, ax = plt.subplots()
+    table = ax.table(cellText=cell_info, loc='center', cellColours=cell_color, cellLoc='center')
+    table.scale(1, 1.5)
     ax.axis('off')
-    ax.table(cell_text, colLabels=columns, loc='center')
     plt.show()
