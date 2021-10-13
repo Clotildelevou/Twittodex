@@ -46,6 +46,7 @@ def build_description(national_number):
     else:
         text += "There are less females than males in the nature.\n"
 
+    text += "#Pokemon"
     return text
 
 
