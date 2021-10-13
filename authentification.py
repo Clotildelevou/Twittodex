@@ -28,6 +28,15 @@ def get_api():
         print("Error during authentication")
 
 
+def destroy_all_tweets():
+    api = get_api()
+    tweets = api.user_timeline(screen_name="TwittodexBot",
+                               include_rts=True,
+                               )
+    for tweet in tweets:
+        api.destroy_status(tweet.id)
+
+
 def set_profile_picture(national_number):
     api = get_api()
     pp_path = pokemon.get_pokemon_pic(national_number)
