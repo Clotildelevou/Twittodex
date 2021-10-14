@@ -9,16 +9,13 @@ import logger
 import state
 
 
-from os import environ
-CONSUMER_KEY = environ['CONSUMER_KEY']
-CONSUMER_SECRET = environ['CONSUMER_SECRET']
-ACCESS_KEY = environ['ACCESS_KEY']
-ACCESS_SECRET = environ['ACCESS_SECRET']
-
-
 def get_api():
     dotenv_path = join(dirname(__file__), '.env')
     load_dotenv(dotenv_path)
+    CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
+    CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
+    ACCESS_KEY = os.environ.get("ACCESS_KEY")
+    ACCESS_SECRET = os.environ.get("ACCESS_SECRET")
 
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
