@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 import pokemon
 import logger
+import state
 
 
 from os import environ
@@ -87,3 +88,6 @@ def gen_daily_tweet(national_number, logfile):
     except:
         error = traceback.format_exc()
         logger.err_stats_posted(logfile, name, error)
+
+    state_path = state.get_state_file()
+    state.save_state(national_number, state_path)
