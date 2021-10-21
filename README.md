@@ -8,7 +8,7 @@ You can find about stats, weaknesses and general informations about the Pokemon 
 # Demo
 
 ![Tweet of the day](https://github.com/Clotildelevou/Twittodex/blob/master/img/liepard.png)
-![Stats](https://github.com/Clotildelevou/Twittodex/blob/master/img/liepard-stats.png)![Weaks](https://github.com/Clotildelevou/Twittodex/blob/master/img/liepard-weaknesses.png)
+![Stats](https://github.com/Clotildelevou/Twittodex/blob/master/img/liepard-stats.png)![Weaks](https://github.com/Clotildelevou/Twittodex/blob/master/img/liepard-weak.png)
 
 
 ## Additional informations
