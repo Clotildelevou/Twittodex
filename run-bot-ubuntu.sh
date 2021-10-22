@@ -1,9 +1,19 @@
 #!/bin/bash
 
 sudo apt install cron
-export EDITOR=vim
-crontab -e
-
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)"
 
-00 22 * * * ./$SCRIPT_DIR
+#write out current crontab
+crontab -l > mycron
+#echo new cron into cron file
+echo "00 22 * * * ./$SCRIPT_DIR" >> mycron
+#install new cron file
+crontab mycron
+rm mycron
+
+sudo systemctl enable cron
+sudo systemctl start cron
+
+
+
+
